@@ -1,136 +1,71 @@
-<p align="center">
- <img width="450px" src="./.github/taskcafe-full.png" align="center" alt="Taskcafe logo" />
-</p>
-<p align="center">
-  <a href="https://discord.gg/JkQDruh">
-    <img alt="Discord" src="https://img.shields.io/discord/745396499613220955" />
-  </a>
-  <a href="https://github.com/JordanKnott/taskcafe/releases">
-    <img alt="Releases" src="https://img.shields.io/github/v/release/JordanKnott/taskcafe" />
-  </a>
-  <a href="https://hub.docker.com/repository/docker/taskcafe/taskcafe">
-    <img alt="Dockerhub" src="https://img.shields.io/docker/v/taskcafe/taskcafe?label=docker&sort=semver" />
-  </a>
-  <a href="https://goreportcard.com/report/github.com/JordanKnott/taskcafe">
-    <img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/JordanKnott/taskcafe" />
-  </a>
-  <a href="">
-    <img alt="Docker pulls" src="https://img.shields.io/docker/pulls/taskcafe/taskcafe" />
-  </a>
-</p>
+## Comprehensive Task Management and Collaboration Platform for Enhanced Productivity and Workflow Optimization
 
-  <p align="center">
-    <a href="https://github.com/JordanKnott/taskcafe/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
-    ·
-    <a href="https://github.com/JordanKnott/taskcafe/discussions/new?category=ideas">Request Feature</a>
-     ·
-    <a href="https://github.com/JordanKnott/taskcafe/discussions/new?category=q-a">Ask a Question</a>
-  </p>
-<p align="center">
-Was this project useful? Please consider <a href="https://www.buymeacoffee.com/jordanknott">donating</a> to help me improve it!
-</p>
-<p align="center">
- This project is still in <strong>alpha development</strong></p>
+[![Discord](https://img.shields.io/discord/753094126684053574.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/your-invite-code) [![Releases](https://img.shields.io/github/release-date/JordanKnott/taskcafe)](https://github.com/JordanKnott/taskcafe/releases) [![Docker pulls](https://img.shields.io/docker/pulls/jordanknott/taskcafe)](https://hub.docker.com/r/jordanknott/taskcafe) [![Go Report Card](https://goreportcard.com/badge/github.com/JordanKnott/taskcafe)](https://goreportcard.com/report/github.com/JordanKnott/taskcafe)
 
-![Taskcafe](./.github/taskcafe_preview.png)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.me/your-donate-link)
 
-## Features
+---
 
+This advanced task management and collaboration platform is designed to significantly enhance productivity and optimize workflow processes for both individuals and teams. Featuring an intuitive Kanban board interface, this platform is built to handle the complexity and nuances of modern project management needs.
+
+### Features
 The following features have been implemented:
 
-- Manage tasks through a Kanban board interface (set due dates, labels, add checklists)
-- View all your current assigned tasks through the My Tasks view
-- Personal projects
-- Task comments and activity
+- **Kanban Board Interface**: Manage tasks effortlessly with due dates, labels, and checklists.
+- **My Tasks View**: Consolidate all assigned tasks in a single, easy-to-navigate view.
+- **Personal Projects**: Create and manage projects independently.
+- **Task Comments and Activity**: Enhance team collaboration with integrated comments and activity tracking.
 
-This project is still in active development, so some options may not be fully implemented yet.
+This project is still in active development, with many more features on the way. For updates on development, join our [Discord server](https://discord.gg/your-invite-code). Check out the [Roadmap](https://github.com/JordanKnott/taskcafe/projects/1) for planned features.
 
-**For updates on development, join the [Discord server](https://discord.gg/JkQDruh).**
+### Installation
+#### With Docker & Docker-Compose
+Ensure you have Docker and Docker-Compose installed. Then follow these steps:
 
-For a list of planned features, check out the [Roadmap](https://github.com/JordanKnott/taskcafe/wiki/Roadmap)!
-
-## Installation
-
-### With docker & docker-compose
-
-You'll need both [docker](https://www.docker.com/) & [docker-compose](https://docs.docker.com/compose/install/) installed.
-
-First clone the repository:
-
-``` bash
+```sh
 git clone https://github.com/JordanKnott/taskcafe && cd taskcafe
-```
-
-Now do the following:
-
-``` bash
 docker-compose -p taskcafe up -d
 ```
 
-This will start a postgres instance as well as a taskcafe instance.
+Visit [http://localhost:3333](http://localhost:3333) to complete the initial setup by creating the first system user.
 
-The second command runs the database schema migrations.
+#### From Source
+Make sure Golang is installed on your machine. Then proceed with:
 
-If you visit [http://localhost:3333](http://localhost:3333), you will get redirected to the installation
-screen so that you can create the first system user.
-
-### From Source
-
-You'll need [Golang](https://golang.org/dl/) installed on your machine.
-
-Next, clone the repository:
-
-``` bash
-git clone https://github.com/JordanKnott/taskcafe && cd taskcafe
-```
-
-Next we need to build the binary. This project uses [Mage](https://magefile.org/) for its build tool.
-
-``` bash
+```sh
+ && cd taskcafe
 go run cmd/mage/main.go install
 go run cmd/mage/main.go build
 ```
 
-This will:
+This process will:
+- Install Yarn packages for the frontend.
+- Build the React frontend and embed it in the binary.
+- Compile the final executable binary found in the `dist` folder.
 
-- Install all yarn packages for the frontend
-- Build the React frontend
-- Embed the React frontend in the binary
-- Compile the final exectuable binary
+Copy the example config file `conf/app.example.toml` to `conf/app.toml` and configure it accordingly. Run database migrations with:
 
-The newly created `taskcafe` binary can be found in the __dist__ folder.
+```sh
+taskcafe migrate
+```
 
-It contains everything neccessary to run except the config file. An example config file can be found in `conf/app.example.toml`.
+Launch the web interface with:
 
-For more information on configuration, please read the [wiki](https://github.com/JordanKnott/taskcafe/wiki/Configuration).
-The config will need to be copied to a `conf/app.toml` in the same place the binary is.
+```sh
+taskcafe web
+```
 
-Make sure to fill out the database section of the config in order to connect it to your database.
+For a detailed installation guide on Ubuntu/Debian, refer to the [Wiki](https://github.com/JordanKnott/taskcafe/wiki).
 
-Then run the database migrations with `taskcafe migrate`.
+### Comparison with Other Tools
+Unlike other project management tools such as Trello or NextCloud, this platform is tailored to fit a unique workflow that prioritizes user preferences and enhances task management efficiency. While currently focused on delivering fundamental features, future updates will introduce advanced functionalities that distinguish this platform from its competitors.
 
-Now you can run the web interface by running `taskcafe web`.
+### Contributing & Community
+Join our [Discord server](https://discord.gg/your-invite-code) for support and community discussions. If you're interested in contributing, please read the [Contribution Guide](https://github.com/JordanKnott/taskcafe/blob/master/CONTRIBUTING.md) and adhere to our [Code of Conduct](https://github.com/JordanKnott/taskcafe/blob/master/CODE_OF_CONDUCT.md).
 
-[A more detailed guide for installing on Ubuntu/Debian](https://github.com/JordanKnott/taskcafe/wiki/Installation-(ubuntu-debian))
+### License
+This platform is licensed under the [MIT License](https://github.com/JordanKnott/taskcafe/blob/master/LICENSE).
 
-## How is this different from X (Trello, NextCloud, etc)?
+---
 
-One of the primary goals of Taskcafe is to provide a project management tool that I personally enjoy using for my
-own projects and fits my workflow.
-
-During alpha development, the current plan is to build the "basic" features - features that are pretty much
-standard across all kanban boards / project management tools.
-
-Once Taskcafe is out of alpha, there are many features that I plan on adding that will differentiate it from other products (check out the [Roadmap](https://github.com/JordanKnott/taskcafe/wiki/Roadmap) for ideas on future plans).
-
-## Contributing & community
-
-If you have questions regarding how to use Taskcafe, check out the [discord server](https://discord.gg/JkQDruh).
-
-If you're interesting in contributing to Taskcafe, please read the [contribution guide first](https://github.com/JordanKnott/taskcafe/blob/master/CONTRIBUTING.md)!
-
-There is also a [Code of Conduct](https://github.com/JordanKnott/taskcafe/blob/master/CODE_OF_CONDUCT.md) as well.
-
-## License
-
-[MIT License](LICENSE)
+Your feedback and contributions are invaluable in making this platform better. Please consider [donating](https://www.paypal.me/your-donate-link) to support the ongoing development of this project.
