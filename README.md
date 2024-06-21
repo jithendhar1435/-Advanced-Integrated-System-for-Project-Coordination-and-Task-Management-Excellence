@@ -1,71 +1,86 @@
-## Comprehensive Task Management and Collaboration Platform for Enhanced Productivity and Workflow Optimization
-
-[![Discord](https://img.shields.io/discord/753094126684053574.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/your-invite-code) [![Releases](https://img.shields.io/github/release-date/JordanKnott/taskcafe)](https://github.com/JordanKnott/taskcafe/releases) [![Docker pulls](https://img.shields.io/docker/pulls/jordanknott/taskcafe)](https://hub.docker.com/r/jordanknott/taskcafe) [![Go Report Card](https://goreportcard.com/badge/github.com/JordanKnott/taskcafe)](https://goreportcard.com/report/github.com/JordanKnott/taskcafe)
-
-[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.me/your-donate-link)
-
----
-
-This advanced task management and collaboration platform is designed to significantly enhance productivity and optimize workflow processes for both individuals and teams. Featuring an intuitive Kanban board interface, this platform is built to handle the complexity and nuances of modern project management needs.
-
-### Features
+Advanced Integrated System for Project Coordination and Task Management Excellence
+Features
 The following features have been implemented:
 
-- **Kanban Board Interface**: Manage tasks effortlessly with due dates, labels, and checklists.
-- **My Tasks View**: Consolidate all assigned tasks in a single, easy-to-navigate view.
-- **Personal Projects**: Create and manage projects independently.
-- **Task Comments and Activity**: Enhance team collaboration with integrated comments and activity tracking.
+Manage tasks through a Kanban board interface (set due dates, labels, add checklists)
+View all your current assigned tasks through the My Tasks view
+Personal projects
+Task comments and activity
+This project is still in active development, so some options may not be fully implemented yet.
 
-This project is still in active development, with many more features on the way. For updates on development, join our [Discord server](https://discord.gg/your-invite-code). Check out the [Roadmap](https://github.com/JordanKnott/taskcafe/projects/1) for planned features.
+For updates on development, join the Discord server.
 
-### Installation
-#### With Docker & Docker-Compose
-Ensure you have Docker and Docker-Compose installed. Then follow these steps:
+For a list of planned features, check out the Roadmap!
 
-```sh
-git clone https://github.com/JordanKnott/taskcafe && cd taskcafe
+Installation
+With Docker & Docker Compose
+You'll need both Docker & Docker Compose installed.
+
+First, clone the repository and navigate to the project directory:
+
+sh
+Copy code
+git clone <repository_url> && cd taskcafe
+Now, start the services:
+
+sh
+Copy code
 docker-compose -p taskcafe up -d
-```
+This will start a Postgres instance as well as a Taskcafe instance.
 
-Visit [http://localhost:3333](http://localhost:3333) to complete the initial setup by creating the first system user.
+Visit http://localhost:3333 to access the installation screen and create the first system user.
 
-#### From Source
-Make sure Golang is installed on your machine. Then proceed with:
+From Source
+You'll need Golang installed on your machine.
 
-```sh
- && cd taskcafe
+Next, clone the repository and navigate to the project directory:
+
+sh
+Copy code
+git clone <repository_url> && cd taskcafe
+Build the binary using Mage:
+
+sh
+Copy code
 go run cmd/mage/main.go install
 go run cmd/mage/main.go build
-```
+This will:
 
-This process will:
-- Install Yarn packages for the frontend.
-- Build the React frontend and embed it in the binary.
-- Compile the final executable binary found in the `dist` folder.
+Install all yarn packages for the frontend
+Build the React frontend
+Embed the React frontend in the binary
+Compile the final executable binary
+The newly created taskcafe binary can be found in the dist folder. It contains everything necessary to run except the config file. An example config file can be found in conf/app.example.toml.
 
-Copy the example config file `conf/app.example.toml` to `conf/app.toml` and configure it accordingly. Run database migrations with:
+For more information on configuration, please read the wiki. The config will need to be copied to conf/app.toml in the same place the binary is.
 
-```sh
+Make sure to fill out the database section of the config in order to connect it to your database.
+
+Run the database migrations with:
+
+sh
+Copy code
 taskcafe migrate
-```
+Now you can run the web interface by executing:
 
-Launch the web interface with:
-
-```sh
+sh
+Copy code
 taskcafe web
-```
+A more detailed guide for installing on Ubuntu/Debian is available.
 
-For a detailed installation guide on Ubuntu/Debian, refer to the [Wiki](https://github.com/JordanKnott/taskcafe/wiki).
+How is This Different from Other Tools (Trello, NextCloud, etc.)?
+One of the primary goals of this project is to provide a project management tool that fits personal workflows and is enjoyable to use for personal projects.
 
-### Comparison with Other Tools
-Unlike other project management tools such as Trello or NextCloud, this platform is tailored to fit a unique workflow that prioritizes user preferences and enhances task management efficiency. While currently focused on delivering fundamental features, future updates will introduce advanced functionalities that distinguish this platform from its competitors.
+During alpha development, the focus is on building "basic" features—features that are standard across all Kanban boards/project management tools.
 
-### Contributing & Community
-Join our [Discord server](https://discord.gg/your-invite-code) for support and community discussions. If you're interested in contributing, please read the [Contribution Guide](https://github.com/JordanKnott/taskcafe/blob/master/CONTRIBUTING.md) and adhere to our [Code of Conduct](https://github.com/JordanKnott/taskcafe/blob/master/CODE_OF_CONDUCT.md).
+Once out of alpha, many features will be added to differentiate this product from others (check out the Roadmap for ideas on future plans).
 
-### License
-This platform is licensed under the [MIT License](https://github.com/JordanKnott/taskcafe/blob/master/LICENSE).
+Contributing & Community
+If you have questions regarding how to use this project, check out the Discord server.
 
----
+If you're interested in contributing, please read the contribution guide first!
 
-Your feedback and contributions are invaluable in making this platform better. Please consider [donating](https://www.paypal.me/your-donate-link) to support the ongoing development of this project.
+There is also a Code of Conduct to follow.
+
+License
+This project is licensed under the MIT License.
